@@ -38,7 +38,7 @@ public class UsuarioServicesImpl  implements UsuarioServices {
         BeanUtils.copyProperties(usuariosDto, usuario, ignoresProperties);
         usuario.setSenha(passwoedHash);
         Usuario novoUsuario = usuarioRepository.save(usuario);
-        return new UsuariosDto(novoUsuario.getNome(), novoUsuario.getLogin(), novoUsuario.getSenha());
+        return new UsuariosDto(novoUsuario.getNome(), novoUsuario.getLogin(), novoUsuario.getSenha(), novoUsuario.getRole());
     }
 
     @Override

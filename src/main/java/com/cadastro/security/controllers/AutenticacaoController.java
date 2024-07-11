@@ -1,6 +1,7 @@
 package com.cadastro.security.controllers;
 
 import com.cadastro.security.dtos.AuthDto;
+import com.cadastro.security.services.UtenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AutenticacaoController {
 
+    UtenticacaoService utenticacaoService;
     AuthenticationManager authenticationManager;
     @Autowired
-    public AutenticacaoController(AuthenticationManager authenticationManager) {
+    public AutenticacaoController(AuthenticationManager authenticationManager, UtenticacaoService utenticacaoService) {
         this.authenticationManager = authenticationManager;
+        this.utenticacaoService = utenticacaoService;
     }
 
     @PostMapping
@@ -23,6 +26,6 @@ public class AutenticacaoController {
 
         var usuarioAutenticationTolkien = new UsernamePasswordAuthenticationToken(authDto.login(), authDto.senha());
        authenticationManager.authenticate(usuarioAutenticationTolkien);
-        return "Tolkien autenticado com sucesso!";
+        return utenticacaoService.obterToken(authDto);
     }
 }

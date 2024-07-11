@@ -1,10 +1,7 @@
 package com.cadastro.security.models;
 
 import com.cadastro.security.enums.RoleEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,11 +23,13 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue
     private long id;
-
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String senha;
+    @Column(nullable = false)
     private String login;
-
+    @Column(nullable = false)
     private RoleEnum role;
 
     @Override

@@ -10,6 +10,6 @@ public enum RoleEnum {
     ADMIN("admin"),
     USER("user");
 
-    private final String role;
+    private String role;
 
 }
